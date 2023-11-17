@@ -83,6 +83,12 @@ class ChecksumEnforcingInputStream extends InputStream {
     return i;
   }
 
+  // Read the stream without calculating the checksum. For benchmarks and testing.
+  @VisibleForTesting
+  int readNoChecksum(byte[] b, int off, int len) throws IOException {
+    return delegate.read(b, off, len);
+  }
+
   @Override
   public void reset() throws IOException {
     throw new RuntimeException("reset() Not Supported");
